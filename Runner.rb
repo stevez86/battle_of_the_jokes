@@ -1,4 +1,5 @@
 require_relative 'model'
+require_relative 'controller'
 
 game = Controller.new(filename: "jokes.csv")
 

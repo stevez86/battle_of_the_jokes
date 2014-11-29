@@ -1,3 +1,4 @@
+# require_relative 'controller.rb'
 class View
 
   def self.menu
@@ -6,15 +7,18 @@ class View
     menu_option = gets.chomp # or ARGV
     case menu_option
     when "add"
-      [:add, add]
+      [:add_joke, add]
     when "delete"
-      [:delete, delete]
+      [:delete_joke, delete]
     when "vote" #to get 2 jokes and vote
-      [:vote, vote]
+      [:get_joke_battle]
     when "rankings" #print list of rankings
-      [:rankings]
+      [:print_jokes]
     when "exit"
       exit
+    else
+      puts "Please enter a valid command."
+      return
     end
   end
 
@@ -33,8 +37,11 @@ class View
     puts "1. #{joke1}"
     puts "2. #{joke2}"
     puts "Enter '1' or '2' to vote on which joke is funnier"
-    user_vote = gets.chomp
-    return user_vote
+    user_vote = gets.chomp.to_i
+    #manipulate winner joke +1
+    winner = two_jokes[user_vote-1]
+    loser = (two_jokes - [winner]).join("")
+    return [winner, loser]
   end
 
   def self.delete
@@ -50,6 +57,10 @@ class View
 
   def self.rankings
     puts #all the jokes in ranked order
+  end
+
+  def self.clear_screen
+    print "\e[2J"
   end
 
 end

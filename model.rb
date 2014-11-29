@@ -2,29 +2,35 @@
 require 'csv'
 
 class JokeList #model
-  def initialize(args = {})
-    @csv = args.fetch(:csv)
+  def initialize
+    # @csv = args.fetch(:csv)
     @jokes = []
     @headers = []
 
   end
 
   def add_joke(string, wins=0, battles=0)
-
+    @jokes << Joke.new(joke_string: string, wins: wins, battles: battles)
   end
 
-  def delete_joke
+  def delete_joke(id)
+
   end
 
 
   def get_joke_battle
+    @jokes.shuffle.slice(0,2)
   end
 
   def sort
   end
 
-  def set_list(list)
+  def set_list(list)    #only ran when loaded
     @jokes = list
+  end
+
+  def get_list
+    @jokes
   end
 
   def get_jokes_by_rank
@@ -41,7 +47,7 @@ class Joke
   attr_reader :joke_string, :num_wins, :num_battles
 
   def initialize(args = {})
-    @joke_string = args.fetch(:joke, '')
+    @joke_string = args.fetch(:joke_string, '')
     @num_wins = args.fetch(:wins, 0).to_i
     @num_battles = args.fetch(:battles, 0).to_i
   end
@@ -51,7 +57,16 @@ class Joke
   end
 
   def to_s
-    "#{@joke_string} wins: #{@num_wins} battles: #{@num_battles}"
+    "#{@joke_string}" #" wins: #{@num_wins} battles: #{@num_battles}"
+  end
+
+  def win!
+    @num_wins += 1
+    @num_battles += 1
+  end
+
+  def lose!
+    num_battles +=1
   end
 end
 
@@ -83,13 +98,13 @@ class CSVParser
     @csv
   end
 
-  def save_jokes
-    CSV.open(@filename, "wb", :quote_char => "\x00") do |csv|
-      @jokes.each do |joke|
+  def save_jokes(jokes)
+    CSV.open(@filename, "w") do |csv|
+      headers = ["joke_string","wins","battles"]
+      csv << headers
+      jokes.each do |joke|
         input = [joke.joke_string, joke.num_wins.to_s, joke.num_battles.to_s]
-        p input
         csv << input
-        # p csv
       end
     end
   end
@@ -99,13 +114,16 @@ end
 class Controller
   def initialize(args = {})
     @filename = args.fetch(:filename)
-    parser = CSVParser.new(@filename)
-    csv = parser.get_csv
-    @joke_list = JokeList.new()
+    @parser = CSVParser.new(filename: @filename)
+    # csv = parser.get_csv
+    @joke_list = JokeList.new
+
   end
 
   def run!
     @joke_list.set_list(@parser.load_jokes)
+
+    @joke_list.get_joke_battle
 
 
 
@@ -116,9 +134,4 @@ class Controller
   def print_jokes
     @joke_list.print_jokes
   end
-
-  def save_jokes
-    @parser.save_jokes
-  end
-
 end

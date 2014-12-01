@@ -12,13 +12,65 @@ class JokeList #model
   end
 
   def start_joke_battle
-    return_pair = View.vote(@jokes.shuffle.slice(0,2))
-    return_pair[0].win!
-    return_pair[1].lose!
+    return_pair = View.vote(select_for_joke_battle)
+    update_rankings(return_pair[0],return_pair[1]) unless return_pair.nil?
+    kill_bad_jokes
+  end
+
+  def select_for_joke_battle
+    alive_jokes.sample(2)
+  end
+
+  def alive_jokes
+    @jokes.select { |joke| joke.dead == false }
+  end
+
+  def dead_jokes
+    @jokes.select { |joke| joke.dead == true }
+  end
+
+  def kill_bad_jokes
+    jokes_to_kill = @jokes.select{ |joke| joke.battles > 10 && joke.ranking < 300}
+    jokes_to_kill.each { |joke| joke.dead = true }
+  end
+
+  def update_rankings(winner,loser)
+    q_winner = calc_q(winner)
+    q_loser = calc_q(loser)
+
+    e_winner = q_winner / (q_winner + q_loser)
+    e_loser = q_loser / (q_winner + q_loser)
+
+    puts "\nWinner ranking: #{winner.ranking}"
+    puts "Loser ranking: #{loser.ranking}"
+
+    #update winner
+    winner.wins += 1
+    winner.battles += 1
+    winner.sum_of_opponents_ranking += loser.ranking
+    winner.ranking = winner.ranking + winner.kfact * (1 - e_winner)
+    winner.ranking = 100.0 if winner.ranking < 100
+
+    #update loser
+    loser.battles += 1
+    loser.sum_of_opponents_ranking += loser.ranking
+    loser.ranking = loser.ranking + loser.kfact * (0 - e_loser)
+    loser.ranking = 100.0 if loser.ranking < 100
+
+    puts "\nNew winner ranking: #{winner.ranking}"
+    puts "New loser ranking: #{loser.ranking}"
+
+    #sort list
+    sort!
+    pause
+  end
+
+  def calc_q(joke)
+    10 ** (joke.ranking / 400.0)
   end
 
   def sort!
-    @jokes = @jokes.sort_by! {|joke| joke.num_wins}.reverse
+    @jokes = @jokes.sort_by! {|joke| joke.ranking}.reverse
   end
 
   def set_list(list)    #only ran when loaded
@@ -31,37 +83,36 @@ class JokeList #model
 
   def print_jokes
     sort!
-    @jokes.each_with_index {|joke, index| puts "#{index+1}. #{joke} [wins: #{joke.num_wins}]"}
-    puts "\nPress ENTER to continue"
+    puts "Top jokes:"
+    alive_jokes.each_with_index {|joke, index| puts "#{index+1}. #{joke} [ranking: #{joke.ranking.round(2)}, wins: #{joke.wins}, battles: #{joke.battles}]"}
+
+    puts "\nDead jokes:" if dead_jokes != []
+    dead_jokes.each_with_index {|joke, index| puts "#{index+1}. #{joke} [ranking: #{joke.ranking.round(2)}, wins: #{joke.wins}, battles: #{joke.battles}]"}
+    pause
+  end
+
+  def pause
+    puts "\nPress ENTER to continue..."
     gets.chomp
   end
 end
 
 
 class Joke
-  attr_reader :joke_string, :num_wins, :num_battles
+  attr_accessor :joke_string, :wins, :battles, :ranking, :sum_of_opponents_ranking, :kfact, :dead
 
   def initialize(args = {})
     @joke_string = args.fetch(:joke_string, '')
-    @num_wins = args.fetch(:wins, 0).to_i
-    @num_battles = args.fetch(:battles, 0).to_i
-  end
-
-  def set_joke(new_joke)
-    @joke_string = new_joke
+    @wins = args.fetch(:wins, 0).to_i
+    @battles = args.fetch(:battles, 0).to_i
+    @ranking = args.fetch(:ranking, 100).to_f
+    @sum_of_opponents_ranking = args.fetch(:sum_of_opponents_ranking, 0).to_f
+    @dead = args.fetch(:dead, false) == "true"
+    @kfact = 800.0 / (1 + @battles)
   end
 
   def to_s
-    "#{@joke_string}"#{}" wins: #{@num_wins} battles: #{@num_battles}"
-  end
-
-  def win!
-    @num_wins += 1
-    @num_battles += 1
-  end
-
-  def lose!
-    @num_battles += 1
+    "#{@joke_string}"
   end
 end
 
@@ -73,30 +124,30 @@ class CSVParser
 
   def load_jokes
     jokes = []
-    @headers = @csv.shift
+    @headers = @csv.shift.map &:to_sym
+    reset = false # if true, resets all jokes
+
     @csv.each do |line|
-      joke_args = {}
-      @headers.each_with_index do |header,index|
-        joke_args[header.to_sym] = line[index]
+
+      if line.size == @headers.size && !reset
+        joke_args = Hash[@headers.zip(line)]
+      else
+        p joke_args = {joke_string: line[0]}
       end
+
       jokes << Joke.new(joke_args)
     end
-    return jokes
-  end
 
-  def get_csv
-    @csv
+    return jokes
   end
 
   def save_jokes(jokes)
     CSV.open(@filename, "w") do |csv|
-      headers = ["joke_string","wins","battles"]
-      csv << headers
+
+      csv << @headers
       jokes.each do |joke|
-        input = [joke.joke_string, joke.num_wins.to_s, joke.num_battles.to_s]
-        csv << input
+        csv << [joke.joke_string, joke.wins.to_s, joke.battles.to_s, joke.ranking.to_s, joke.sum_of_opponents_ranking.to_s, joke.dead.to_s]
       end
     end
   end
-
 end

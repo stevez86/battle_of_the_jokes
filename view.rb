@@ -45,23 +45,23 @@ class View
     #output: user's vote (either 1 or 2)
     #retrieve 2 jokes
 
-
-    loading
-    joke1 = two_jokes.first
-    joke2 = two_jokes.last
+    # loading
     clear_screen
-    puts "1. #{joke1}"
-    puts "2. #{joke2}"
-    puts "Enter '1' or '2' to vote on which joke is funnier"
+    puts "-"*50
+    puts "1. #{two_jokes.first}"
+    puts "-"*50
+    puts "2. #{two_jokes.last}"
+    puts "-"*50
+    puts "Vote '1' or '2' to vote on which joke is funnier:"
     user_vote = gets.chomp.to_i
     #manipulate winner joke +1
 
-    # puts "user_vote: #{user_vote}"
-
-    if user_vote == 1
+    if user_vote == 2
+      return two_jokes = [two_jokes[1],two_jokes[0]]
+    elsif user_vote == 1
       return two_jokes
     else
-      return [joke2,joke1]
+      return nil
     end
   end
 

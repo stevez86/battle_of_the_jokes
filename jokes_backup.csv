@@ -1,8 +1,21 @@
-joke_string,wins,battles
-Yo mama so bald even a wig wouldn't help!, 13, 2
-Yo mama so bald you can see whats on her mind, 0, 0
-Yo mama so bald that she took a shower and got brain-washed., 0, 0
-Yo mama's so bald her hair looks like stitches., 0, 0
-Yo mama's so bald she curls her hair with rice., 0, 0
-Yo momma is so bald and talented she can blow dry her hair answer yes to all your questions and give head at the same time, 0, 0
-Yo mama's so bald Mr. Clean got jealous., 0, 0
+joke_string,wins,battles,ranking,sum_of_opponents_rating,dead
+Yo mama so ugly that not even goldfish crackers smile back.,3,4,930.921017614801,1789.6287105602157,false
+Chuck Norris is required to maintain a concealed weapon license in all 50 states in order to legally wear pants.,3,3,907.9207920792079,0.0,false
+Why is Frankenstein a dickhead? Because his nuts are in his neck.,4,4,893.5448001275719,182.5284807023716,false
+Why Does Ariel wear seashells? Because she can't fit into D-shells,4,4,887.0417666547098,0.0,false
+Yo mama's so poor your family ate cereal with a fork to save milk.,1,2,827.2727272727273,0.0,false
+Yo mama's so bald she curls her hair with rice.,2,5,747.2545552443573,892.0961702546113,false
+Lunch is lunch.,6,6,671.9111614298348,200.0,false
+Yo mama's so bald Mr. Clean got jealous.,2,3,613.2550514090376,1397.5325403056045,false
+Dinner is dinner.,2,2,536.3636363636364,100.0,false
+Breakfast is breakfast.,1,1,500.0,0.0,false
+Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the fuck down.,1,2,453.08203302383527,500.0,false
+What do you call a blonde with two brain cells? Pregnant.,2,5,233.33333333333334,460.595617267849,false
+Yo mama so bald you can see whats on her mind.,1,5,197.67909198435862,178.06713656547734,false
+Yo mama's so bald her hair looks like stitches.,2,7,100.0,0.0,true
+Why did the librarian slip and fall on the library floor? Because she was in the non-friction section.,0,5,100.0,0.0,false
+Chuck Norris can impregnate you via anal or oral sex.,1,2,100.0,0.0,false
+Yo mama so bald even a wig wouldn't help!,1,4,100.0,100.0,false
+What do you get when you cross a lawyer with the Godfather? An offer you can't understand.,1,3,100.0,0.0,false
+Yo mama so bald that she took a shower and got brain-washed.,0,2,100.0,100.0,false
+Why was the blonde so happy after she finished her jigsaw puzzle in only six months? Because on the box it said From 2 to 4 years.,0,5,100.0,200.0,false

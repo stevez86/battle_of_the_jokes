@@ -88,4 +88,9 @@ class View
     print "\e[H"
   end
 
+  def self.user_pause
+    puts "\nPress ENTER to continue..."
+    gets.chomp
+  end
+
 end

@@ -1,22 +1,22 @@
-joke_string,wins,battles,ranking,sum_of_opponents_rating,dead,immortal
-Breakfast is breakfast.,1,1,300.0,100.0,false,false
-Lunch is lunch.,1,1,300.0,100.0,false,false
-Why was the blonde so happy after she finished her jigsaw puzzle in only six months? Because on the box it said From 2 to 4 years.,1,1,300.0,100.0,false,false
-Yo mama's so bald her hair looks like stitches.,1,1,300.0,100.0,false,false
-Why Does Ariel wear seashells? Because she can't fit into D-shells,1,1,300.0,100.0,false,false
-Brunch is brunch,1,1,300.0,100.0,false,false
-Chuck Norris can impregnate you via anal or oral sex.,1,1,300.0,100.0,false,false
-Yo mama so ugly that not even goldfish crackers smile back.,1,1,300.0,100.0,false,false
-Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the fuck down.,0,1,100.0,100.0,false,false
-Yo mama so bald that she took a shower and got brain-washed.,0,0,100.0,0.0,false,false
-Yo mama's so poor your family ate cereal with a fork to save milk.,0,0,100.0,0.0,false,false
-Chuck Norris is required to maintain a concealed weapon license in all 50 states in order to legally wear pants.,0,0,100.0,0.0,false,false
-Yo mama's so bald Mr. Clean got jealous.,0,2,100.0,200.0,false,false
-Yo mama so bald even a wig wouldn't help!,0,1,100.0,100.0,false,false
-What do you call a blonde with two brain cells? Pregnant.,0,0,100.0,0.0,false,false
-What do you get when you cross a lawyer with the Godfather? An offer you can't understand.,0,1,100.0,100.0,false,false
-Yo mama's so bald she curls her hair with rice.,0,1,100.0,100.0,false,false
-Why is Frankenstein a dickhead? Because his nuts are in his neck.,0,0,100.0,0.0,false,false
-Why did the librarian slip and fall on the library floor? Because she was in the non-friction section.,0,1,100.0,100.0,false,false
-Dinner is dinner.,0,0,100.0,0.0,false,false
-Yo mama so bald you can see whats on her mind.,0,1,100.0,100.0,false,false
+joke_string,id,wins,battles,ranking,dead,immortal,opponent_ids
+Why is Frankenstein a dickhead? Because his nuts are in his neck.,17,9,9,1363.8456552370906,false,false,"[""15"", ""18""]"
+Chuck Norris is required to maintain a concealed weapon license in all 50 states in order to legally wear pants.,11,1,1,1200.0,false,false,[]
+Lunch is lunch.,1,1,2,1032.1679449578678,false,false,[]
+Breakfast is breakfast.,0,0,0,800.0,false,false,[]
+Brunch is brunch,5,0,0,800.0,false,false,[]
+Yo mama so ugly that not even goldfish crackers smile back.,7,0,0,800.0,false,false,[]
+Yo mama's so poor your family ate cereal with a fork to save milk.,10,0,0,800.0,false,false,[]
+Why was the blonde so happy after she finished her jigsaw puzzle in only six months? Because on the box it said From 2 to 4 years.,2,0,0,800.0,false,false,[]
+Dinner is dinner.,19,0,0,800.0,false,false,[]
+Yo mama's so bald she curls her hair with rice.,16,0,0,800.0,false,false,[]
+Yo mama's so bald her hair looks like stitches.,3,0,0,800.0,false,false,[]
+Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the fuck down.,8,0,0,800.0,false,false,[]
+What do you get when you cross a lawyer with the Godfather? An offer you can't understand.,15,0,1,768.8851685842716,false,false,"[""17""]"
+What do you call a blonde with two brain cells? Pregnant.,14,0,1,768.0908898310215,false,false,[]
+Yo mama so bald even a wig wouldn't help!,13,0,1,767.1099987432914,false,false,[]
+Why did the librarian slip and fall on the library floor? Because she was in the non-friction section.,18,0,2,753.2532210437606,false,false,"[""17""]"
+Why Does Ariel wear seashells? Because she can't fit into D-shells,4,0,1,739.9780952808661,false,false,[]
+Yo mama's so bald Mr. Clean got jealous.,12,0,1,727.2727272727273,false,false,[]
+Yo mama so bald you can see whats on her mind.,20,0,1,400.0,false,false,[]
+Yo mama so bald that she took a shower and got brain-washed.,9,0,1,400.0,false,false,[]
+Chuck Norris can impregnate you via anal or oral sex.,6,0,1,400.0,false,false,[]

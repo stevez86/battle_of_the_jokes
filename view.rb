@@ -44,14 +44,17 @@ class View
     #input: 2 jokes
     #output: user's vote (either 1 or 2)
     #retrieve 2 jokes
-
+    # p two_jokes[0].joke_string.length
+    # p two_jokes[0].joke_string.length
+    joke_length = two_jokes.max_by {|joke| joke.joke_string.length }.joke_string.length
+    # p length
     # loading
     clear_screen
-    puts "-"*50
+    puts "-"* (two_jokes.first.joke_string.length + 9)
     puts "1. #{two_jokes.first}"
-    puts "-"*50
+    puts "-"* (joke_length + 9)
     puts "2. #{two_jokes.last}"
-    puts "-"*50
+    puts "-"* (two_jokes.last.joke_string.length + 9)
     puts "Vote '1' or '2' to vote on which joke is funnier:"
     user_vote = gets.chomp.to_i
     #manipulate winner joke +1

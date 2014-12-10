@@ -1,0 +1,85 @@
+.header {
+  display: relative;
+  height: 15%;
+  width: 100%;
+  border-bottom: 1px black solid;
+}
+
+a:link, a:visited {
+  color: black;
+}
+
+a:hover {
+  color: red;
+}
+
+.logo {
+  position: inline-block;
+  font-size: 35px;
+}
+
+#logo_list {
+  color: red;
+}
+
+.logo h1 {
+  text-align: center;
+}
+
+.new {
+  position: inline-block;
+  text-align: right;
+  margin-right: 5%;
+}
+
+.sidebar li {
+
+  margin-bottom: 10px;
+
+}
+
+.sidebar {
+  vertical-align: top;
+  padding-left: 10px;
+  padding-right: 15px;
+  /*position: absolute;*/
+  width: 25%;
+  display: inline-block;
+  height: 100%;
+  border-right: 1px black solid;
+}
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  width: 73%;
+}
+
+.view, .add {
+  position: relative;
+  text-align: center;
+  display: block;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.view li:hover {
+  background-color: pink;
+}
+
+.view li {
+  padding-left: 10px;
+  border: 1px black solid;
+  margin: 5px;
+
+}
+
+ul {
+  list-style-type: none;
+}
+
+.view h1 {
+  text-align: center;
+
+}
+
